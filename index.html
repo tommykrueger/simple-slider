@@ -10,56 +10,72 @@
 	padding: 120px;
 	}
 
+
+
 #slider-area { 
+	width: 680px;
+	height: 500px;
+	margin: 0 auto;
 	position: relative;
+	box-shadow: 0 0 5px #999;
 	}
 
 /* slider */ 
 #slider-container {
 	width: 640px;
 	height: 480px;
+	margin: 0 auto;
 	padding: 0;
 	overflow: hidden;
 	position: relative;
-	border: 20px solid #fff;
+	background: #fff;
 	}
 
 ul#slider-list {
 	width: 2000em;
 	height: 480px;
+	padding: 0;
 	position: relative;
 	}
 ul#slider-list li {
 	width: 640px;
 	height: 480px;
+	display: block;
 	float: left;
 	text-align: center;
+	overflow: hidden;
 	}
 ul#slider-list li img {
-	width: 640px;
-	height: auto;
+	width: auto;
+	height: 480px;
 	}
 
 a#slider-prev-btn,
 a#slider-next-btn {
 	width: 40px;
-	height: 558px;
-	-webkit-opacity: 1.0;
-	-moz-opacity: 1.0;
-	opacity: 1.0;
+	height: 60px;
+	margin: -30px 0 0 0;
+	color: #444;
+	font-size: 4em;
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	left: -22px;
+	top: 50%;
+	z-index: 99;
+
+	-webkit-opacity: 0.75;
+	-moz-opacity: 0.75;
+	opacity: 0.75;
 	
 	-webkit-transition: all 80ms ease-in-out;
 	-moz-transition: all 80ms ease-in-out;
 	transition: all 80ms ease-in-out;
-	
-	position: absolute;
-	left: -24px;
-	top: 20px;
-	z-index: 99;
 	}
 a#slider-next-btn {
 	left: auto;
-	right: -24px;
+	right: -22px;
 	}
 a#slider-prev-btn:hover,
 a#slider-next-btn:hover {
@@ -139,8 +155,8 @@ $(document).ready(function($){
 <div id="page">
 
 	<div id="slider-area">
-		<a href="#" id="slider-prev-btn"> &rt; </a>
-		<a href="#" id="slider-next-btn"> &lt; </a>
+		<a href="#" id="slider-prev-btn"> &lsaquo; </a>
+		<a href="#" id="slider-next-btn"> &rsaquo; </a>
 
 		<div id="slider-container">
 			<ul id="slider-list">
