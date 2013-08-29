@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>A Simple Slider</title>
+
+<style>
+
+#page {
+	width: 960px;
+	margin: 0 auto;
+	padding: 120px;
+	}
+
+#slider-area { 
+	position: relative;
+	}
+
+/* slider */ 
+#slider-container {
+	width: 640px;
+	height: 480px;
+	padding: 0;
+	overflow: hidden;
+	position: relative;
+	border: 20px solid #fff;
+	}
+
+ul#slider-list {
+	width: 2000em;
+	height: 480px;
+	position: relative;
+	}
+ul#slider-list li {
+	width: 640px;
+	height: 480px;
+	float: left;
+	text-align: center;
+	}
+ul#slider-list li img {
+	width: 640px;
+	height: auto;
+	}
+
+a#slider-prev-btn,
+a#slider-next-btn {
+	width: 40px;
+	height: 558px;
+	-webkit-opacity: 1.0;
+	-moz-opacity: 1.0;
+	opacity: 1.0;
+	
+	-webkit-transition: all 80ms ease-in-out;
+	-moz-transition: all 80ms ease-in-out;
+	transition: all 80ms ease-in-out;
+	
+	position: absolute;
+	left: -24px;
+	top: 20px;
+	z-index: 99;
+	}
+a#slider-next-btn {
+	left: auto;
+	right: -24px;
+	}
+a#slider-prev-btn:hover,
+a#slider-next-btn:hover {
+	-webkit-opacity: 1.0;
+	-moz-opacity: 1.0;
+	opacity: 1.0;
+	}
+
+</style>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function($){
+
+	// setup slider for artist page
+	var imageSliderObj = {
+		width: 640,
+		speed: 8000,
+		transitionSpeed: 250,
+		el: $('ul#slider-list'),
+		length: $('ul#slider-list').children().length,
+		current: 0,
+		interval: null,
+		autoSlideFunction: null
+	};
+	
+	$('#slider-next-btn').click(function(e){
+		e.preventDefault();
+		
+		clearInterval(imageSliderObj.interval);
+		
+		imageSliderObj.current++;
+
+		if(imageSliderObj.current == (imageSliderObj.length))
+			imageSliderObj.current = 0;
+		
+		imageSliderObj.el.stop().animate({'left': -(imageSliderObj.current * imageSliderObj.width)}, imageSliderObj.transitionSpeed);
+		imageSliderObj.interval = setInterval(imageSliderObj.autoSlideFunction, imageSliderObj.speed);
+	});
+	
+	$('#slider-prev-btn').click(function(e){
+		e.preventDefault();
+
+		clearInterval(imageSliderObj.interval);
+		
+		if(imageSliderObj.current == 0)
+			imageSliderObj.current = imageSliderObj.length-1;
+		else
+			imageSliderObj.current--;	
+
+		imageSliderObj.el.stop().animate({'left': -(imageSliderObj.current * imageSliderObj.width)}, imageSliderObj.transitionSpeed);
+		imageSliderObj.interval = setInterval(imageSliderObj.autoSlideFunction, imageSliderObj.speed);
+	});
+	
+	imageSliderObj.autoSlideFunction = function(){
+		
+		imageSliderObj.current++;
+		
+		if(imageSliderObj.current == (imageSliderObj.length))
+			imageSliderObj.current = 0;
+		
+		imageSliderObj.el.stop().animate({'left': - (imageSliderObj.current * imageSliderObj.width)}, imageSliderObj.transitionSpeed);
+	};
+	
+	imageSliderObj.interval = setInterval(imageSliderObj.autoSlideFunction, imageSliderObj.speed);
+
+	
+});
+</script>
+
+
+</head>
+
+<body>
+<div id="page">
+
+	<div id="slider-area">
+		<a href="#" id="slider-prev-btn"> &rt; </a>
+		<a href="#" id="slider-next-btn"> &lt; </a>
+
+		<div id="slider-container">
+			<ul id="slider-list">
+				<li><a href="#"><img src="img/01.jpg" title="Palms on Langkawi Island - Malaysia" /></a></li>	
+				<li><a href="#"><img src="img/02.jpg" title="Eagle Protection" /></a></li>	
+				<li><a href="#"><img src="img/03.jpg" title="A Tea Field in the highlands" /></a></li>	
+				<li><a href="#"><img src="img/04.jpg" title="Compound view" /></a></li>	
+				<li><a href="#"><img src="img/05.jpg" title="Riverside" /></a></li>	
+				<li><a href="#"><img src="img/06.jpg" title="Berlin Dragon Year" /></a></li>	
+			</ul>
+		</div>	
+	</div>
+
+</div>
+</body>
+
+</html>
